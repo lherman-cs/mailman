@@ -1,31 +1,42 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
 builds:
-- env:
-  - CGO_ENABLED=0
-- goos:
-  - darwin
-  - windows
-  - linux
-- goarch:
-  - amd64
-  - 386
-  - arm
-  - arm64
-archive:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
+  - env:
+      - CGO_ENABLED=0
+  - goos:
+      - darwin
+      - windows
+      - linux
+  - goarch:
+      - 386
+      - amd64
+      - arm
+      - arm64
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
   sort: asc
   filters:
     exclude:
-    - '^docs:'
-    - '^test:'
+      - "^docs:"
+      - "^test:"
+archive:
+  name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+  replacements:
+    darwin: Darwin
+    linux: Linux
+    windows: Windows
+    386: i386
+    amd64: x86_64
+  format_overrides:
+    - goos: windows
+      format: zip
+snapcraft:
+  name_template: "{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+  summary: Peer-to-peer share data
+  description: |
+    Peer-to-peer share data
+  grade: stable
+  confinement: classic

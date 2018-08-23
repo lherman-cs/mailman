@@ -23,7 +23,12 @@ func senderHandler(c *cli.Context) error {
 	}
 	defer conn.Close()
 
-	_, err = io.CopyBuffer(conn, os.Stdin, nil)
+	opt := Option{
+		Interval:       256,
+		LoadingMessage: "sending",
+		FinishMessage:  "sent!",
+	}
+	_, err = io.CopyBuffer(conn, NewReader(os.Stdin, opt), nil)
 	return err
 }
 
@@ -45,7 +50,12 @@ func receiverHandler(c *cli.Context) error {
 	}
 	defer conn.Close()
 
-	_, err = io.CopyBuffer(os.Stdout, conn, nil)
+	opt := Option{
+		Interval:       256,
+		LoadingMessage: "receiving",
+		FinishMessage:  "received!",
+	}
+	_, err = io.CopyBuffer(os.Stdout, NewReader(conn, opt), nil)
 	return err
 }
 
@@ -53,7 +63,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "Share"
 	app.Usage = "Peer-to-peer share data"
-	app.Version = "0.1.0"
+	app.Version = "0.1.2"
 
 	app.Commands = []cli.Command{
 		{
