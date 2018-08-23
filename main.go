@@ -67,14 +67,16 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:   "send",
-			Usage:  "get from stdin out to `share`",
-			Action: senderHandler,
+			Name:    "send",
+			Aliases: []string{"s"},
+			Usage:   "get from stdin out to `share`",
+			Action:  senderHandler,
 		},
 		{
-			Name:   "receive",
-			Usage:  "get from `share` out to stdout",
-			Action: receiverHandler,
+			Name:    "receive",
+			Aliases: []string{"r", "recv"},
+			Usage:   "get from `share` out to stdout",
+			Action:  receiverHandler,
 		},
 	}
 
