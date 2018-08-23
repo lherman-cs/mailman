@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net"
+	"time"
 )
 
 func getReceiverIP() (string, error) {
@@ -22,13 +24,26 @@ func getReceiverIP() (string, error) {
 	return receiver.IP.String(), err
 }
 
-func broadcastIP() error {
-	conn, err := net.Dial("udp", fmt.Sprintf("255.255.255.255:%d", Port))
-	if err != nil {
-		return err
-	}
-	defer conn.Close()
+func broadcastIP(ctx context.Context) <-chan error {
+	errc := make(chan error)
+	go func() {
+		defer close(errc)
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			default:
+				conn, err := net.Dial("udp", fmt.Sprintf("255.255.255.255:%d", Port))
+				if err != nil {
+					errc <- err
+					return
+				}
+				defer conn.Close()
 
-	fmt.Fprintf(conn, "a") // HACK! FIXME
-	return nil
+				fmt.Fprintf(conn, "")
+				time.Sleep(time.Second)
+			}
+		}
+	}()
+	return errc
 }

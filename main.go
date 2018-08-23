@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"log"
@@ -40,11 +41,11 @@ func receiverHandler(c *cli.Context) error {
 	}
 	defer listener.Close()
 
-	if err := broadcastIP(); err != nil {
-		return err
-	}
+	ctx, cancel := context.WithCancel(context.Background())
+	broadcastIP(ctx)
 
 	conn, err := listener.Accept()
+	cancel()
 	if err != nil {
 		return err
 	}
