@@ -3,19 +3,33 @@
 builds:
   - env:
       - CGO_ENABLED=0
-  - goos:
+    ldflags:
+      - -X main.name={{.ProjectName}} -X main.version={{.Version}}
+    goos:
       - darwin
-      - windows
+      - dragonfly
+      - freebsd
       - linux
-  - goarch:
+      - nacl
+      - netbsd
+      - openbsd
+      - plan9
+      - solaris
+    goarch:
       - 386
       - amd64
       - arm
       - arm64
-checksum:
-  name_template: "checksums.txt"
-snapshot:
-  name_template: "{{ .Tag }}-next"
+      - ppc64
+      - ppc64le
+      - mips
+      - mipsle
+      - mips64
+      - mips64le
+    goarm:
+      - 5
+      - 6
+      - 7
 changelog:
   sort: asc
   filters:
@@ -23,20 +37,6 @@ changelog:
       - "^docs:"
       - "^test:"
 archive:
-  name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
   replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
     386: i386
     amd64: x86_64
-  format_overrides:
-    - goos: windows
-      format: zip
-snapcraft:
-  name_template: "{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
-  summary: Peer-to-peer share data
-  description: |
-    Peer-to-peer share data
-  grade: stable
-  confinement: classic

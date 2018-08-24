@@ -9,7 +9,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-func senderHandler(c *cli.Context) error {
+func SenderHandler(c *cli.Context) error {
 	info, err := getReceiverInfo()
 	if err != nil {
 		return err

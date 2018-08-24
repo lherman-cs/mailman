@@ -10,7 +10,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-func receiverHandler(c *cli.Context) error {
+func ReceiverHandler(c *cli.Context) error {
 	// Open receiver tcp port
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", Port))
 	if err != nil {
