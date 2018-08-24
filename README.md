@@ -17,7 +17,7 @@ TBA (probably a GIF)
 
 ## Contributing
 
-Please feel free to contribute by making issues or PRs. I'll review them as quick as possible.
+Please feel free to contribute by making issues or PRs. I'll review them as quickly as possible.
 
 ## Authors
 
