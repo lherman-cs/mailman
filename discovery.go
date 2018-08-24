@@ -7,21 +7,37 @@ import (
 	"time"
 )
 
-func getReceiverIP() (string, error) {
+type ReceiverInfo struct {
+	IP       string
+	Hostname string
+}
+
+func getReceiverInfo() (*ReceiverInfo, error) {
 	addr, err := net.ResolveUDPAddr("udp", fmt.Sprintf(":%d", Port))
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	conn, err := net.ListenUDP("udp", addr)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	defer conn.Close()
 
-	buf := make([]byte, 1) // HACK! FIXME
+	buf := make([]byte, 1)
 	_, receiver, err := conn.ReadFromUDP(buf)
-	return receiver.IP.String(), err
+	ip := receiver.IP.String()
+	hosts, err := net.LookupAddr(ip)
+	hostname := "-"
+	if err == nil && len(hosts) > 0 {
+		hostname = hosts[len(hosts)-1]
+	}
+
+	info := ReceiverInfo{
+		IP:       receiver.IP.String(),
+		Hostname: hostname,
+	}
+	return &info, err
 }
 
 func broadcastIP(ctx context.Context) <-chan error {
