@@ -25,4 +25,4 @@ Please feel free to contribute by making issues or PRs. I'll review them as quic
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
