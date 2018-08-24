@@ -12,8 +12,7 @@ Peer-to-peer data sharing CLI for unix-like operating systems
 
 ## Installing
 
-TBA (probably a GIF)
-
+![demo](demo.gif)
 
 ## Contributing
 
