@@ -6,7 +6,6 @@ Peer-to-peer data sharing CLI for unix-like operating systems
 
 * Peer-to-peer networking (**no centralized server!**)
 * Auto peer discovery
-* Beautiful
 * Simple
 * Unix-like
 
@@ -15,7 +14,7 @@ Peer-to-peer data sharing CLI for unix-like operating systems
 1. Go to the (release page](https://github.com/lherman-cs/mailman/releases)
 2. Get the latest release for your OS and architecture
 3. Untar it
-4. And.. done. You can simply run the executable file, mailman
+4. And.. done. You can simply run the executable file, **mailman**
 
 ![demo](demo.gif)
 
