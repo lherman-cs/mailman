@@ -21,7 +21,7 @@ Since **mailman** is peer-to-peer, there are some limitations:
 
 ## Installing
 
-1. Go to the (release page](https://github.com/lherman-cs/mailman/releases)
+1. Go to the [release page](https://github.com/lherman-cs/mailman/releases)
 2. Get the latest release for your OS and architecture
 3. Untar it
 4. And.. done. You can simply run the executable file, **mailman**
