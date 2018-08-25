@@ -1,6 +1,10 @@
 # Mailman
 
-Peer-to-peer data sharing CLI for unix-like operating systems
+Mailman is designed for unix-like users who want to share either small or big files without any hassle. Even though it's a very simple program, it still gives you a lot of flexibility by using the **stdin** and **stdout**, meaning you can use **pipe, compression, archive, etc!**
+
+This is how the data flow looks like:
+
+##### stdin -----> mailman send (peer 1) -------- local network --------> mailman recv (peer 2) -----> stdout
 
 ## Features
 
@@ -8,6 +12,12 @@ Peer-to-peer data sharing CLI for unix-like operating systems
 * Auto peer discovery
 * Simple
 * Unix-like
+
+## Requirement
+
+Since **mailman** is peer-to-peer, there are some limitations:
+
+1. The **sender** and **receiver** have to be in the **same network**
 
 ## Installing
 
