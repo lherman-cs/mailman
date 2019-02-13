@@ -1,38 +1,49 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"io"
+	"log"
 	"net"
 	"os"
 
-	"github.com/urfave/cli"
+	"github.com/hashicorp/mdns"
 )
 
-func ReceiverHandler(c *cli.Context) error {
-	// Open receiver tcp port
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", Port))
+func RunReceiver() {
+	var ans rune
+
+	list, err := net.Listen("tcp", fmt.Sprintf(":%d", Port))
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
-	defer listener.Close()
 
-	ctx, cancel := context.WithCancel(context.Background())
-	broadcastIP(ctx)
+	// Setup our service export
+	host, _ := os.Hostname()
+	info := []string{"Mailman"}
+	service, _ := mdns.NewMDNSService(host, ServiceName, "", "", Port, nil, info)
 
-	conn, err := listener.Accept()
-	cancel()
-	if err != nil {
-		return err
+	// Create the mDNS server, defer shutdown
+	server, _ := mdns.NewServer(&mdns.Config{Zone: service})
+	defer server.Shutdown()
+
+	for {
+		conn, err := list.Accept()
+		if err != nil {
+			continue
+		}
+
+		log.Printf("Do you want to receive from %s? [y/n] ", conn.LocalAddr())
+		fmt.Scanf("%c", &ans)
+
+		// send back answer
+		fmt.Fprintf(conn, "%c", ans)
+
+		if ans == 'y' {
+			io.Copy(os.Stdout, conn)
+			break
+		}
+
+		conn.Close()
 	}
-	defer conn.Close()
-
-	opt := Option{
-		Interval:       256,
-		LoadingMessage: "receiving",
-		FinishMessage:  "received!",
-	}
-	_, err = io.CopyBuffer(os.Stdout, NewReader(conn, opt), nil)
-	return err
 }
