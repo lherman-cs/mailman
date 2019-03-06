@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/hashicorp/mdns"
+	"github.com/grandcat/zeroconf"
 )
 
 func RunReceiver() {
@@ -17,14 +17,12 @@ func RunReceiver() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer list.Close()
 
-	// Setup our service export
-	host, _ := os.Hostname()
-	info := []string{"Mailman"}
-	service, _ := mdns.NewMDNSService(host, ServiceName, "", "", Port, nil, info)
-
-	// Create the mDNS server, defer shutdown
-	server, _ := mdns.NewServer(&mdns.Config{Zone: service})
+	server, err := zeroconf.Register("Mailman", ServiceName, "local.", Port, nil, nil)
+	if err != nil {
+		panic(err)
+	}
 	defer server.Shutdown()
 
 	for {
