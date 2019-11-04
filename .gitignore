@@ -11,4 +11,32 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+!cmd/mailman/assets
+cmd/mailman/mailman
+cmd/mailman/assets_prod.go
+
 dist
+
+# Vue stuff
+.DS_Store
+node_modules
+assets
+!ui/src/assets
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
