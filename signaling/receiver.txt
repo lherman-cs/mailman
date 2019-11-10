@@ -1,0 +1,2 @@
+{"type": "observe", "payload": null}
+{"type": "connect", "payload": {"name": "Lukas Herman", "password": "poop"}}

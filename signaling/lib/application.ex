@@ -7,17 +7,21 @@ defmodule Signaling.Application do
 
   def start(_type, _args) do
     children = [
-      Plug.Cowboy.child_spec(scheme: :http, plug: Signaling.Router, options: [
-        port: 4001,
-        dispatch: dispatch()
-      ]),
-      Registry.child_spec(
-        keys: :unique, 
-        name: Registry.Peers,
-        partitions: System.schedulers_online()
+      Plug.Cowboy.child_spec(
+        scheme: :http,
+        plug: Signaling.Router,
+        options: [
+          port: 4001,
+          dispatch: dispatch()
+        ]
       ),
+      Registry.child_spec(
+        keys: :unique,
+        name: Signaling.Peer,
+        partitions: System.schedulers_online()
+      )
     ]
-    
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Signaling.Supervisor]
@@ -27,11 +31,10 @@ defmodule Signaling.Application do
   defp dispatch do
     [
       {:_,
-        [
-          {"/ws/[...]", Signaling.Handler, []},
-          {:_, Plug.Cowboy.Handler, {Signaling.Router, []}}
-        ]
-      }
+       [
+         {"/ws/[...]", Signaling.Handler, []},
+         {:_, Plug.Cowboy.Handler, {Signaling.Router, []}}
+       ]}
     ]
   end
 end

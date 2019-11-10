@@ -1,0 +1,2 @@
+{"type": "create_session", "payload": {"password": "poop"}}
+{"type": "confirm", "payload": {"name": "Gabrielle Stewart", "accept": true}}
