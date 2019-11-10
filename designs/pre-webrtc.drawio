@@ -1,4 +1,4 @@
-<mxfile host="www.draw.io" modified="2019-11-10T05:41:49.757Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36" etag="qano5o3NowC4agQVp8he" version="12.2.3" type="github" pages="1">
+<mxfile host="www.draw.io" modified="2019-11-10T22:29:13.360Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36" etag="oW7BTxnbVRtiIhfSIgDi" version="12.2.3" type="github" pages="1">
   <diagram id="ZXlwWJLv4ygaCSPEyNDv" name="Page-1">
     <mxGraphModel dx="2188" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -348,30 +348,13 @@
             <mxPoint x="120" y="1450" as="targetPoint"/>
           </mxGeometry>
         </mxCell>
-        <mxCell id="q3wGza1GuSpYiw5jmE9S-70" value="{&lt;br&gt;&amp;nbsp; &quot;type&quot;: &quot;confirm&quot;,&lt;br&gt;&amp;nbsp; &quot;payload&quot;: {&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;accept&quot;: true&lt;br&gt;&amp;nbsp; }&lt;br&gt;}" style="text;html=1;resizable=0;points=[];align=left;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="1" vertex="1" connectable="0">
+        <mxCell id="q3wGza1GuSpYiw5jmE9S-70" value="{&lt;br&gt;&amp;nbsp; &quot;type&quot;: &quot;connect&quot;,&lt;br&gt;&amp;nbsp; &quot;payload&quot;: {&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;accept&quot;: true&lt;br&gt;&amp;nbsp; }&lt;br&gt;}" style="text;html=1;resizable=0;points=[];align=left;verticalAlign=middle;labelBackgroundColor=#ffffff;" parent="1" vertex="1" connectable="0">
           <mxGeometry x="10" y="1440" as="geometry">
             <mxPoint x="-35" y="11" as="offset"/>
           </mxGeometry>
         </mxCell>
         <mxCell id="g7lllRLZ7ym4EyjqqsX6-18" value="Webrtc communication starts here" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-155" y="1530" width="940" height="190" as="geometry"/>
-        </mxCell>
-        <mxCell id="WkaOFk_qI3cZ46P5C4Ze-2" value="" style="endArrow=none;html=1;startArrow=classic;startFill=1;endFill=0;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="120" y="1300" as="sourcePoint"/>
-            <mxPoint x="510" y="1300" as="targetPoint"/>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="WkaOFk_qI3cZ46P5C4Ze-4" value="" style="endArrow=none;html=1;startArrow=classic;startFill=1;endFill=0;" edge="1" parent="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-60" y="1330" as="sourcePoint"/>
-            <mxPoint x="120" y="1330" as="targetPoint"/>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="WkaOFk_qI3cZ46P5C4Ze-5" value="{&lt;br&gt;&amp;nbsp; &quot;type&quot;: &quot;connect&quot;,&lt;br&gt;&amp;nbsp; &quot;payload&quot;: null&lt;br&gt;}" style="text;html=1;resizable=0;points=[];align=left;verticalAlign=middle;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="WkaOFk_qI3cZ46P5C4Ze-4">
-          <mxGeometry x="-0.1111" y="2" relative="1" as="geometry">
-            <mxPoint x="-40" y="2" as="offset"/>
-          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
